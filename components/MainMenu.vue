@@ -8,6 +8,7 @@
         class="w-[280px] hover:scale-110 transition ease-in-out delay-150 duration-300"
     /></NuxtLink>
     <div class="flex flex-wrap gap-6 items-center">
+      >
       <NuxtLink to="/categories" class="flex gap-2 justify-start"
         ><Icon name="bxs:category" color="purple" size="25" /><span
           >Категории</span
