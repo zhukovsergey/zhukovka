@@ -8,14 +8,25 @@
         class="w-[280px] hover:scale-110 transition ease-in-out delay-150 duration-300"
     /></NuxtLink>
     <div class="flex flex-wrap gap-6 items-center">
-      >
       <NuxtLink to="/categories" class="flex gap-2 justify-start"
-        ><Icon name="bxs:category" color="purple" size="25" /><span
+        ><Icon
+          name="bxs:category"
+          color="purple"
+          size="25"
+          class="transition ease-in-out delay-150 duration-200"
+        /><span
+          class="hover:text-indigo-100 transition ease-in-out delay-150 duration-200"
           >Категории</span
         ></NuxtLink
       >
       <NuxtLink to="/" class="flex gap-2 justify-end"
-        ><Icon name="ic:baseline-face-3" color="purple" size="25" /><span
+        ><Icon
+          name="ic:baseline-face-3"
+          color="purple"
+          size="25"
+          class="transition ease-in-out delay-150 duration-200"
+        /><span
+          class="hover:text-indigo-100 transition ease-in-out delay-150 duration-200"
           >Обо мне</span
         ></NuxtLink
       >
@@ -28,5 +39,8 @@
 <style lang="css" scoped>
 span {
   font-size: 18px;
+}
+a:hover svg {
+  color: white !important;
 }
 </style>
