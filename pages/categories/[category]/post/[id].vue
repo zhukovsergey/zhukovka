@@ -5,20 +5,18 @@
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
 const post = ref([]);
+
 const route = useRoute();
-console.log(route.params);
-async function getPost() {
-  const { data } = await supabase
-    .from("dorams")
-    .select()
-    .order("id", { ascending: true })
-    .eq("url", route.params.id);
-  post.value = data;
-}
-onMounted(() => {
-  getPost();
+
+onBeforeMount(async () => {
+  const { data, error } = await $fetch(`/api/get/post/${route.params.id}`).then(
+    (data) => (post.value = data)
+  );
+  // .catch((error) => {
+  //   console.log(error + "Ошибка");
+  //   throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+  // });
 });
 </script>
 
