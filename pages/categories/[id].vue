@@ -44,26 +44,45 @@
 
 <script setup>
 const supabase = useSupabaseClient();
-
 const route = useRoute();
-console.log(route.params);
+const error = useError();
 const posts = ref([]);
 const catinfo = ref("");
+
+console.log(error);
 async function getPost() {
-  const { data } = await supabase
-    .from("categories")
+  try {
+    const { data, error } = await supabase
+      .from("categories")
 
-    .select(
-      "id, titleofcategory, dorams(id,title,url,shorttext, mainimg, created_at) "
-    )
-    .order("id", { ascending: true })
-    .eq("urlofcategory", route.params.id);
-
-  posts.value = data[0].dorams;
-  catinfo.value = data[0];
+      .select(
+        "id, titleofcategory, dorams(id,title,url,shorttext, mainimg, created_at) "
+      )
+      .order("id", { ascending: true })
+      .eq("urlofcategory", route.params.id);
+    console.log(error);
+    posts.value = data[0].dorams;
+    catinfo.value = data[0];
+  } catch (e) {
+    error.value = {
+      statusCode: "404",
+      message: "Page not found",
+      url: "/",
+      statusMessage: "Page not found",
+      description: "Page not found",
+    };
+    this.$nuxt.error({ statusCode: 404, message: err.message });
+    throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+  }
+  // if (error) {
+  //   console.log(data[0]);
+  //   throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+  // }
 }
 onMounted(() => {
   getPost();
+
+  console.log(catinfo.value);
 });
 let options = {
   year: "numeric",
