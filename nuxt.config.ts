@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  modules: ['@nuxtjs/supabase','nuxt-icon' ],
+  modules: ['@nuxtjs/supabase','nuxt-icon', '@nuxt/ui','@nuxt/image', ],
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {

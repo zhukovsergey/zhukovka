@@ -19,6 +19,7 @@
           >Категории</span
         ></NuxtLink
       >
+
       <NuxtLink to="/" class="flex gap-2 justify-end"
         ><Icon
           name="ic:baseline-face-3"
@@ -30,11 +31,36 @@
           >Обо мне</span
         ></NuxtLink
       >
+      <NuxtLink v-if="!user" to="/login" class="flex gap-2 justify-end"
+        ><Icon
+          name="ic:baseline-face-3"
+          color="purple"
+          size="25"
+          class="transition ease-in-out delay-150 duration-200"
+        /><span
+          class="hover:text-indigo-100 transition ease-in-out delay-150 duration-200"
+          >Войти
+        </span></NuxtLink
+      >
+      <NuxtLink v-else to="/login" class="flex gap-2 justify-end"
+        ><Icon
+          name="eos-icons:admin-outlined"
+          color="purple"
+          size="25"
+          class="transition ease-in-out delay-150 duration-200"
+        /><span
+          v-if="user"
+          class="hover:text-indigo-100 transition ease-in-out delay-150 duration-200"
+          >{{ user.email }}
+        </span></NuxtLink
+      >
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const user = useSupabaseUser();
+</script>
 
 <style lang="css" scoped>
 span {

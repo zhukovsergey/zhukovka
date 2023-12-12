@@ -10,20 +10,28 @@
               <div
                 class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
               >
-                20
+                {{ post.dorams.length }}
               </div>
             </div>
-            <img class="rounded-t-lg" :src="`${post.imgofcategory}`" alt="" />
+            <NuxtImg
+              format="webp"
+              loading="lazy"
+              class="rounded-t-lg"
+              :src="`${post.imgofcategory}`"
+              alt=""
+            />
           </a>
           <a href="#!" v-else>
             <div class="relative">
               <div
                 class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
               >
-                20
+                {{ post.dorams.length }}
               </div>
             </div>
-            <img
+            <NuxtImg
+              format="webp"
+              loading="lazy"
               class="rounded-t-lg"
               src="https://tenzip.ru/wa-data/public/site/themes/profitshop/img/defaultjpg?v1682676673"
               alt=""
@@ -59,8 +67,11 @@ const posts = ref([]);
 async function getPosts() {
   const { data } = await supabase
     .from("categories")
-    .select()
+    .select("*, dorams(id)", {
+      count: "exact",
+    })
     .order("id", { ascending: true });
+
   posts.value = data;
 }
 onMounted(() => {

@@ -7,11 +7,12 @@
         v-for="p in posts"
         class="flex flex-col justify-center items-center mx-2 my-2"
       >
-        <NuxtLink :to="`${route.params.id}/post/${p.url}`">
+        <NuxtLink :to="`${route.params.id}/${p.url}`">
           <div
             class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
-            <img
+            <NuxtImg
+              format="webp"
               class="object-cover w-full rounded-t-lg md:h-[200px] md:w-auto md:rounded-none md:rounded-s-lg transition duration-300 ease-in-out hover:scale-110"
               :src="`${p.mainimg}`"
               alt=""

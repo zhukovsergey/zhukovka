@@ -1,6 +1,7 @@
 <template>
   <div>
     <NuxtLayout><NuxtPage /></NuxtLayout>
+    <UNotifications :timeout="10000" />
   </div>
 </template>
 <style>
