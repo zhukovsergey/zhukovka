@@ -13,29 +13,24 @@
                 {{ post.dorams.length }}
               </div>
             </div>
-            <NuxtImg
-              format="webp"
-              loading="lazy"
-              class="rounded-t-lg"
-              :src="`${post.imgofcategory}`"
-              alt=""
-            />
+            <UChip :text="post.dorams.length" size="3xl" color="indigo">
+              <NuxtImg
+                format="webp"
+                loading="lazy"
+                class="rounded-t-lg"
+                :src="`${post.imgofcategory}`"
+                alt=""
+            /></UChip>
           </a>
           <a href="#!" v-else>
-            <div class="relative">
-              <div
-                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
-              >
-                {{ post.dorams.length }}
-              </div>
-            </div>
-            <NuxtImg
-              format="webp"
-              loading="lazy"
-              class="rounded-t-lg"
-              src="https://tenzip.ru/wa-data/public/site/themes/profitshop/img/defaultjpg?v1682676673"
-              alt=""
-            />
+            <UChip :text="post.dorams.length" size="3xl" color="indigo">
+              <NuxtImg
+                format="webp"
+                loading="lazy"
+                class="rounded-t-lg"
+                src="https://tenzip.ru/wa-data/public/site/themes/profitshop/img/defaultjpg?v1682676673"
+                alt=""
+            /></UChip>
           </a>
           <div class="p-6">
             <h5

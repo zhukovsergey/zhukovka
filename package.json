@@ -22,8 +22,10 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@nuxt/image": "^1.1.0",
     "@nuxt/ui": "^2.11.1",
+    "@nuxtjs/turnstile": "^0.6.3",
     "@vueup/vue-quill": "^1.2.0",
     "h3-formidable": "^1.0.0",
     "quill-blot-formatter": "^1.0.5",
