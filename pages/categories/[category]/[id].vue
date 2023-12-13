@@ -1,12 +1,20 @@
 <template>
   <div>
-    {{ post }}
-    <div class="flex flex-col justify-center items-center w-100%">
+    <div class="flex flex-col justify-center items-center w-[100%] gap-4">
       <h1>{{ post.title }}</h1>
-      <div v-if="post.mainimg">
-        <NuxtImg :src="`${post.mainimg}`" class="mainimg" />
+      <div v-if="post.mainimg" class="w-[80%] flex justify-center items-center">
+        <NuxtImg
+          :src="`${post.mainimg}`"
+          class="mainimg rounded-md"
+          sizes="200vw sm:50vw md:500px"
+          format="webp"
+          quality="80"
+        />
       </div>
-      <div v-html="post.text"></div>
+      <div
+        v-html="post.text"
+        class="w-[80%] flex flex-col gap-4 justify-center items-center"
+      ></div>
     </div>
     <div class="comment flex flex-col justify-center items-center border-t-2">
       <h2>Блок комментариев</h2>
