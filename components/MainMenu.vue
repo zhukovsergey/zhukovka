@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-between flex-wrap h-auto bg-gradient-to-r from-violet-500 to-fuchsia-500 w-full px-4 py-4 rounded-md text-white font-bold"
+    class="shadow-lg flex justify-between flex-wrap h-auto bg-gradient-to-r from-violet-500 to-fuchsia-500 w-full px-4 py-4 rounded-md text-white font-bold"
   >
     <NuxtLink to="/"
       ><img

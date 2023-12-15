@@ -1,5 +1,6 @@
 //import multer from 'multer'
 import { readFiles } from "h3-formidable";
+import fs from 'fs'
 
 
 
@@ -28,7 +29,7 @@ export default defineEventHandler(async(event) => {
             });
           });
         }
-       
+       console.log(imagesArray)
         return imagesArray[0].path
         
     } catch (err) {

@@ -1,13 +1,13 @@
-<script setup lang="js">
+<script setup lang="ts">
 import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import ImageUploader from "quill-image-uploader";
+//import "@vueup/vue-quill/dist/vue-quill.snow.css";
+//import ImageUploader from "quill-image-uploader";
 //import BlotFormatter from "quill-blot-formatter";
-import scripts from "../public/uploads/scripts/translit";
+//import scripts from "../public/uploads/scripts/translit";
 
-function translite() {
-  url.value = scripts.translite(title.value);
-}
+// function translite() {
+//   url.value = scripts.translite(title.value);
+// }
 const supabase = useSupabaseClient();
 const categoriesfromsupabase = ref();
 async function getPosts() {
@@ -23,38 +23,38 @@ onMounted(() => {
 });
 const content = ref("");
 
-const modules = [
-  {
-    name: "imageUploader",
-    module: ImageUploader,
-    options: {
-      upload: (file) => {
-        return new Promise((resolve, reject) => {
-          const formData = new FormData();
-          formData.append("image", file);
-         try {
-          $fetch("/api/post/post", {
-            method: "POST",
-            body: formData,
-          }).then((res) => {
-            resolve(`http://localhost:3000/uploads/${res}`);
-          });
-        }  catch(err) {
-              reject("Upload failed");
-               console.error("Error:", err);
-            };
-        });
-      },
-    },
-  },
-  // {
-  //   name: "blotFormatter",
-  //   module: BlotFormatter,
-  //   options: {
-  //     /* options */
-  //   },
-  // },
-];
+// const modules = [
+//   {
+//     name: "imageUploader",
+//     module: ImageUploader,
+//     options: {
+//       upload: (file) => {
+//         return new Promise((resolve, reject) => {
+//           const formData = new FormData();
+//           formData.append("image", file);
+
+//           $fetch("/api/post/post", {
+//             method: "POST",
+//             body: formData,
+//           }).then((res) => {
+//             resolve(`/uploads/${res}`);
+//           });
+//           //   .catch((err) => {
+//           //     reject("Upload failed");
+//           //     console.error("Error:", err);
+//           //   });
+//         });
+//       },
+//     },
+//   },
+//   {
+//     name: "blotFormatter",
+//     module: BlotFormatter,
+//     options: {
+//       /* options */
+//     },
+//   },
+// ];
 
 async function onSubmit() {
   const formData = new FormData();
@@ -117,9 +117,9 @@ async function uploadMainFile(e) {
 
     <QuillEditor
       theme="snow"
-      :modules="modules"
       v-model:content="content"
-      :toolbar="'full'"
+      toolbar="full"
+      :modules="modules"
       content-type="html"
     />
     <label class="block my-6">

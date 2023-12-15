@@ -2,12 +2,19 @@
   <div>
     <div class="flex flex-col justify-center items-center w-[100%] gap-4">
       {{ post }}
-      <h1>{{ post.title }}</h1>
+
+      <div class="date flex flex-col justify-start items-start relative">
+        <h1>{{ post.title }}</h1>
+        <p v-if="post.created_at" class="text-xs text-gray-500">
+          {{ formatDate(post.created_at) }}
+        </p>
+      </div>
+      <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 w-[200px]" />
       <div v-if="post.mainimg" class="w-[80%] flex justify-center items-center">
         <NuxtImg
           :src="`${post.mainimg}`"
           class="mainimg rounded-md"
-          sizes="200vw sm:50vw md:500px"
+          sizes="200vw sm:50vw md:600px"
           format="webp"
           quality="80"
         />
@@ -18,9 +25,9 @@
       ></div>
     </div>
     <div class="comment flex flex-col justify-center items-center border-t-2">
-      <h2>Блок комментариев</h2>
+      <h2>Новый комментарий</h2>
       <input
-        @input="validate"
+        @input="validateName"
         minlength="3"
         required
         type="text"
@@ -30,6 +37,7 @@
       />
       <p class="text-xs text-red-500">{{ viserror }}</p>
       <textarea
+        @input="validateComment"
         minlength="5"
         required
         v-model="comment"
@@ -48,12 +56,16 @@
       <button
         :disabled="!token || !nameofcommentator"
         @click="submitComment"
-        class="rounded-md p-2 transition ease-in-out delay-150 duration-300"
+        class="rounded-md p-2 transition ease-in-out delay-150 duration-300 text-white"
         :class="token && nameofcommentator ? 'bg-indigo-500 text-white' : ''"
       >
         Отправить
       </button>
     </div>
+    <h2 class="text-center font-bold text-lg my-4">
+      Комментарии
+      <span v-if="comments" class="text-gray-600">{{ comments.length }}</span>
+    </h2>
     <div
       v-for="(com, index) in comments"
       class="comments w-full flex justify-center items-center gap-2 mb-2"
@@ -67,7 +79,7 @@
             name="typcn:delete-outline"
             size="24"
             color="indigo"
-            class="absolute ml-[300px] hover:"
+            class="absolute right-0 top-0 hover:"
           />
           <div class="flex items-center">
             <input
@@ -143,9 +155,16 @@ useHead(() => ({
     },
   ],
 }));
-function validate() {
+function validateName() {
   if (nameofcommentator.value.length < 3) {
     viserror.value = "Имя слишком короткое";
+  } else {
+    viserror.value = "";
+  }
+}
+function validateComment() {
+  if (comment.value.length < 3) {
+    viserror.value = "Слишком короткий комментарий";
   } else {
     viserror.value = "";
   }
