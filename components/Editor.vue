@@ -65,6 +65,7 @@ loader.value=false
      },
    },
 ];
+const toast = useToast()
 Quill.register("modules/blotFormatter", BlotFormatter);
 async function onSubmit() {
   const formData = new FormData();
@@ -79,6 +80,13 @@ async function onSubmit() {
     method: "POST",
     body: formData,
   });
+  toast.add({
+    id: 'Успежно добавлена статья',
+    title: 'Успежно добавлена статья.',
+    description: '',
+    icon: 'i-octicon-desktop-download-24',
+    timeout: 5000,
+  })
 }
 const shorttext = ref("");
 const mainFile = ref("");
