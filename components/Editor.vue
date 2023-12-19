@@ -1,15 +1,17 @@
 <script setup lang="js">
-import { QuillEditor } from "@vueup/vue-quill";
+import { QuillEditor, Quill } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import ImageUploader from "quill-image-uploader";
-//import BlotFormatter from "quill-blot-formatter";
+import BlotFormatter from "quill-blot-formatter/dist/BlotFormatter";
 import scripts from "../public/uploads/scripts/translit";
+
 
 function translite() {
   url.value = scripts.translite(title.value);
 }
 const supabase = useSupabaseClient();
 const categoriesfromsupabase = ref();
+const loader = ref(false)
 async function getPosts() {
   const { data } = await supabase
     .from("categories")
@@ -33,11 +35,19 @@ const modules = [
           const formData = new FormData();
           formData.append("image", file);
          try {
+          loader.value = true
           $fetch("/api/post/post", {
             method: "POST",
-            body: formData,
-          }).then((res) => {
-            resolve(`http://localhost:3000/uploads/${res}`);
+           body: formData,
+          })
+          .then((res) => {
+
+            setTimeout(() => {
+
+resolve(`${res}`);
+loader.value=false
+
+}, 1500);
           });
         }  catch(err) {
               reject("Upload failed");
@@ -47,15 +57,15 @@ const modules = [
       },
     },
   },
-  // {
-  //   name: "blotFormatter",
-  //   module: BlotFormatter,
-  //   options: {
-  //     /* options */
-  //   },
-  // },
+   {
+     name: "blotFormatter",
+    module: BlotFormatter,
+     options: {
+       /* options */
+     },
+   },
 ];
-
+Quill.register("modules/blotFormatter", BlotFormatter);
 async function onSubmit() {
   const formData = new FormData();
   formData.append("text", content.value);
@@ -114,7 +124,13 @@ async function uploadMainFile(e) {
     >
       Текст статьи
     </span>
-
+    <Icon
+      v-if="loader"
+      class="absolute ml-[50vh] mt-[20vh] z-40"
+      width="120"
+      height="120"
+      name="svg-spinners:pulse-3"
+    />
     <QuillEditor
       theme="snow"
       :modules="modules"
