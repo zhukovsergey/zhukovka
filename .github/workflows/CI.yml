@@ -78,3 +78,23 @@ jobs:
             tar xzf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz -C "/var/www/html/releases/${GITHUB_SHA}"
             tar xzf /var/www/html/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html"
             rm -rf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz
+  activate-release:
+    name: "Activate release"
+    runs-on: ubuntu-latest
+    needs: prepare-release-on-servers
+    steps:
+      - name: Activate Release
+        uses: appleboy/ssh-action@master
+        env:
+          RELEASE_PATH: /var/www/html/releases/${{ github.sha }}
+          ACTIVE_RELEASE_PATH: /home/zhukovka
+        with:
+          host: ${{env.IP_ADDRESS}}
+          username: "root"
+          key: ${{ secrets.OMG_SECRET }}
+          port: "22"
+          envs: RELEASE_PATH,ACTIVE_RELEASE_PATH
+          script: |
+            ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
+            systemctl restart node .output/server/index.mjs  
+            chown -R www-data:www-data ${RELEASE_PATH}
