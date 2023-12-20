@@ -22,7 +22,7 @@ export default defineEventHandler(async(event) => {
           uploadDir: "./public/uploads",
           keepExtensions: true,
         });
-        //console.log('zalupa')
+        
       
         const body_files= files.image;
         let imagesArray = [];
