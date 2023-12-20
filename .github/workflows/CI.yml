@@ -16,8 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{env.NODE_VERSION}}
-          cache: "yarn"
+          cache: "npm"
       - run: |
-          yarn
-          yarn build
-          yarn ci:test
+          npm
+          npm run build
