@@ -18,5 +18,5 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
           cache: "npm"
       - run: |
-          npm
+          npm install
           npm run build
