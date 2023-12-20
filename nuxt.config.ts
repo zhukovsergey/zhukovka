@@ -7,14 +7,14 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxtjs/supabase','nuxt-icon', '@nuxt/ui','@nuxt/image','@nuxtjs/turnstile' ],
   turnstile: {
-    siteKey: '0x4AAAAAAAOh0ElLw7IKT8-D',
+    siteKey: '0x4AAAAAAAOw5q0u_Cu6I7kP',
   },
 
   runtimeConfig: {
     turnstile: {
       // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
       // environment variable.
-      secretKey: '0x4AAAAAAAOh0MJ-qeYPGKSOk2jCUNLfzUg',
+      secretKey: '0x4AAAAAAAOw5jqDveg-Cf1fVjtWyLEgQZw',
     },
   },
 
