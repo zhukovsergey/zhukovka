@@ -70,7 +70,7 @@ jobs:
         with:
           host: ${{env.IP_ADDRESS}}
           username: "root"
-          key: ${{env.SECRET}}
+          password: "zhukov53591974"
           port: "22"
           envs: GITHUB_SHA
           script: |
