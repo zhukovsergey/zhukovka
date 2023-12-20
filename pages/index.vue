@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Главная страница</h1>
+    <h1 class="text-center">Главная страницаsss</h1>
   </div>
 </template>
 
