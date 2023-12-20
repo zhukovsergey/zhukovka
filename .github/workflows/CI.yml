@@ -98,3 +98,21 @@ jobs:
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
             systemctl restart zhukovka
             chown -R www-data:www-data ${RELEASE_PATH}
+  clean-up:
+    name: "Clean up old versions"
+    runs-on: ubuntu-latest
+    needs: activate-release
+    steps:
+      - name: clean up old releases
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{env.IP_ADDRESS}}
+          username: "root"
+          key: ${{ secrets.OMG_SECRET }}
+          port: "22"
+          script: |
+            cd /var/www/html/releases && ls -t -1 | tail -n +4 | xargs rm -rf
+            cd /var/www/html/artifacts && rm -rf *
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: app-artifacts
