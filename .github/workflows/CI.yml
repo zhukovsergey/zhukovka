@@ -1,9 +1,6 @@
-name: Deploy
+name: Test APP
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 env:
   NODE_VERSION: 20.10.0
@@ -11,15 +8,16 @@ env:
 
 jobs:
   test-application:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Test Application
         uses: actions/setup-node@v3
         with:
-          node-version: ${{env.NODE_VERSION}}  
-          cache: 'yarn'
-        - run :
-            yarn
-            yarn build
-            yarn test  
+          node-version: ${{env.NODE_VERSION}}
+          cache: "yarn"
+      - run: |
+          yarn
+          yarn build
+          yarn ci:test
