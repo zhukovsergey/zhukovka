@@ -32,7 +32,8 @@ jobs:
           cache: "npm"
       - run: |
           touch .env
-          echo SECRET_KEY=${{ secrets.zhukovka }} >> .env
+          echo SUPABASE_URL="https://jteofxqllbykhvfqnfnp.supabase.co" >> .env
+          echo SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0ZW9meHFsbGJ5a2h2ZnFuZm5wIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU4MTI5MDUsImV4cCI6MjAxMTM4ODkwNX0._y7JdVJ14mMoe3Tt6prNcx84CVbu4JodYVG86XNFz4s" >> .env
           echo RELEASE_VERSION=${GITHUB_REF} >> .env
           echo GITHUB_SHA=${{ github.sha }} >> .env
           npm i
