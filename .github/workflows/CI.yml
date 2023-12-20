@@ -58,7 +58,7 @@ jobs:
           host: ${{env.IP_ADDRESS}}
           port: "22"
           username: "root"
-          key: ${{ secrets.zhukovka }}
+          key: ${{ secrets.OMG_SECRET }}
           source: ${{ github.sha }}.tar.gz
           target: /var/www/html/artifacts
 
@@ -66,11 +66,11 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           GITHUB_SHA: ${{ github.sha }}
-          SECRET: ${{ secrets.zhukovka }}
+
         with:
           host: ${{env.IP_ADDRESS}}
           username: "root"
-          password: "zhukov53591974"
+          key: ${{ secrets.OMG_SECRET }}
           port: "22"
           envs: GITHUB_SHA
           script: |
