@@ -75,8 +75,7 @@ jobs:
           envs: GITHUB_SHA
           script: |
             mkdir -p "/var/www/html/releases/${GITHUB_SHA}"
-            tar xzf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz -C "/var/www/html/releases/${GITHUB_SHA}"
-            tar xzf /var/www/html/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html"
+            tar xzf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz -C "/home/zhukovka"
             rm -rf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz
   activate-release:
     name: "Activate release"
