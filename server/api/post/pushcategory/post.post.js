@@ -32,7 +32,7 @@ export default defineEventHandler(async(event) => {
            if(result.secure_url) {
 
             setTimeout(() => {
-              fs.unlinkSync(`public/uploads/${files.mainfile[0].newFilename}`);
+              fs.unlinkSync(`public/uploads/${files.imgofcategory[0].newFilename}`);
              
               
               
