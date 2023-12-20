@@ -22,7 +22,7 @@ export default defineEventHandler(async(event) => {
           uploadDir: "./public/uploads",
           keepExtensions: true,
         });
-        
+        console.log('no')
       
         const body_files= files.image;
         let imagesArray = [];
