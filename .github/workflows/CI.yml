@@ -66,10 +66,11 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           GITHUB_SHA: ${{ github.sha }}
+          SECRET: ${{ secrets.zhukovka }}
         with:
           host: ${{env.IP_ADDRESS}}
           username: "root"
-          key: ${{ secrets.zhukovka }}
+          key: ${{env.SECRET}}
           port: "22"
           envs: GITHUB_SHA
           script: |
