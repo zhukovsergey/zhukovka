@@ -96,5 +96,5 @@ jobs:
           envs: RELEASE_PATH,ACTIVE_RELEASE_PATH
           script: |
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
-            systemctl restart node .output/server/index.mjs  
+            systemctl restart zhukovka
             chown -R www-data:www-data ${RELEASE_PATH}
