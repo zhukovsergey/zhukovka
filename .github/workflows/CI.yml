@@ -5,30 +5,21 @@ on:
     branches:
       - main
 
+env:
+  NODE_VERSION: 20.10.0
+  IP_ADDRESS: "5.35.99.66"
+
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+  test-application:
+    runs-on:ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set Node.js 20.x
+      - name: Test Application
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
-      - name: Install dependencies
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-      - name: Install sass
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: add -D sass
-      - name: Run generate
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: generate
-      - name: Deploy to server
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: .output/public
-          remote: /srv/config/portfolio/generated
-          privateKey: ${{ secrets.zhukovka }}
+          node-version: ${{env.NODE_VERSION}}  
+          cache: 'yarn'
+        - run :
+            yarn
+            yarn build
+            yarn test  
