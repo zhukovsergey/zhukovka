@@ -42,7 +42,7 @@
           >Войти
         </span></NuxtLink
       >
-      <NuxtLink v-else to="/login" class="flex gap-2 justify-end"
+      <NuxtLink v-else to="/admin" class="flex gap-2 justify-end"
         ><Icon
           name="eos-icons:admin-outlined"
           color="purple"

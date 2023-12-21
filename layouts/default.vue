@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-8 mt-4 bg-white">
+  <div class="mx-8 mt-4">
     <MainMenu class="mb-[40px]" />
     <slot></slot>
   </div>
