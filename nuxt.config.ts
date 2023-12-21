@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  modules: ['@nuxtjs/supabase','nuxt-icon', '@nuxt/ui','@nuxt/image','@nuxtjs/turnstile' ],
+  modules: ['@nuxtjs/supabase','nuxt-icon', '@nuxt/ui','@nuxt/image','@nuxtjs/turnstile','vue3-carousel-nuxt' ],
   turnstile: {
     siteKey: '0x4AAAAAAAOw5q0u_Cu6I7kP',
   },
@@ -17,6 +17,7 @@ export default defineNuxtConfig({
       secretKey: '0x4AAAAAAAOw5jqDveg-Cf1fVjtWyLEgQZw',
     },
   },
+  
 
   css: ['~/assets/css/main.css'],
   postcss: {
