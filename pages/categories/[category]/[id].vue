@@ -62,9 +62,12 @@
         Отправить
       </button>
     </div>
-    <h2 class="text-center font-bold text-lg my-4">
+    <h2 v-if="comments.length > 0" class="text-center font-bold text-lg my-4">
       Комментарии
-      <span v-if="comments" class="text-gray-600">{{ comments.length }}</span>
+      <span class="text-gray-600">{{ comments.length }}</span>
+    </h2>
+    <h2 v-else class="text-center font-bold text-lg my-4">
+      Комментариев пока нет
     </h2>
     <div
       v-for="(com, index) in comments"

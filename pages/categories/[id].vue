@@ -13,7 +13,7 @@
           >
             <NuxtImg
               format="webp"
-              class="object-cover w-full rounded-t-lg md:h-[200px] md:w-auto md:rounded-none md:rounded-s-lg transition duration-300 ease-in-out hover:scale-110"
+              class="object-cover w-full rounded-t-lg md:h-[200px] md:w-[290px] md:rounded-none md:rounded-s-lg transition duration-300 ease-in-out hover:scale-110"
               :src="`${p.mainimg}`"
               alt=""
             />

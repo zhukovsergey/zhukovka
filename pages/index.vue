@@ -64,7 +64,7 @@
       </Slide>
 
       <template #addons>
-        <Navigation />
+        <Navigation class="text-white text-lg" />
       </template>
     </Carousel>
   </div>
@@ -92,4 +92,15 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style>
+.carousel__icon {
+  color: rgb(244, 232, 252) !important;
+  font-size: 20px !important;
+}
+.carousel__prev {
+  zoom: 1.9;
+}
+.carousel__next {
+  zoom: 1.9;
+}
+</style>
